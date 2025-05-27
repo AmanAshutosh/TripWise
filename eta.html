@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TripWise Tools</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li>
+            <b><a href="index.html"> TripWise Tools</a></b>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="speed.html">Average Speed</a></li>
+          <li><a href="eta.html">ETA</a></li>
+          <li><a href="fuel.html">Fuel Cost</a></li>
+          <li><a href="itinerary.html">Itinerary Cost</a></li>
+        </ul>
+      </nav>
+      <h3>ETA Calculator</h3>
+    </header>
+
+    <main class="container">
+      <section>
+        <div>
+          <p>Distance (km):</p>
+          <input id="distance" type="number" required />
+        </div>
+        <div>
+          <p>Speed (km/h):</p>
+          <input id="speed" type="number" required />
+        </div>
+        <input id="calculateBtn" type="submit" value="Calculate Speed" />
+      </section>
+      <p id="result"></p>
+    </main>
+
+    <footer class="container">
+      <small>
+        Go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      function handleGenerateClick() {
+        const distance = document.getElementById("distance").value;
+        const speed = document.getElementById("speed").value;
+        const result = document.getElementById("result");
+
+        if (distance > 0 && speed > 0) {
+          const eta = distance / speed;
+          result.innerText =
+            "Estimated Time of Arrival : " + eta.toFixed(2) + " hours";
+        } else {
+          result.innerText = "Please enter valid distance and time.";
+        }
+      }
+
+      const buttonElement = document.getElementById("calculateBtn");
+      buttonElement.addEventListener("click", handleGenerateClick);
+    </script>
+  </body>
+</html>

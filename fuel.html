@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TripWise Tools</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li>
+            <b><a href="index.html"> TripWise Tools</a></b>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="speed.html">Average Speed</a></li>
+          <li><a href="eta.html">ETA</a></li>
+          <li><a href="fuel.html">Fuel Cost</a></li>
+          <li><a href="itinerary.html">Itinerary Cost</a></li>
+        </ul>
+      </nav>
+      <h3>Fuel Cost Calculator</h3>
+    </header>
+
+    <main class="container">
+      <section>
+        <div>
+          <p>Distance (km):</p>
+          <input id="distance" type="number" required />
+        </div>
+        <div>
+          <p>Fuel Efficiency (km/l):</p>
+          <input id="fuel" type="number" required />
+        </div>
+        <div>
+          <p>Fuel Price (per litre):</p>
+          <input id="price" type="number" required />
+        </div>
+        <input id="calculateBtn" type="submit" value="Calculate Cost" />
+      </section>
+      <p id="result"></p>
+    </main>
+
+    <footer class="container">
+      <small>
+        Go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      function handleGenerateClick() {
+        const distance = parseFloat(document.getElementById("distance").value);
+        const fuelEfficiency = parseFloat(
+          document.getElementById("fuel").value
+        );
+        const pricePerLiter = parseFloat(
+          document.getElementById("price").value
+        );
+        const result = document.getElementById("result");
+
+        if (distance > 0 && fuelEfficiency > 0 && pricePerLiter > 0) {
+          const fuelNeeded = distance / fuelEfficiency;
+          const totalCost = fuelNeeded * pricePerLiter;
+
+          let message = "Total Fuel Cost: ₹" + totalCost.toFixed(2);
+
+          if (fuelEfficiency < 10) {
+            message += "Your vehicle's fuel efficiency is below 10 km/l.";
+          }
+
+          result.innerText = message;
+        } else {
+          result.innerText = "Please enter valid values in all fields.";
+        }
+      }
+
+      const buttonElement = document.getElementById("calculateBtn");
+      buttonElement.addEventListener("click", handleGenerateClick);
+    </script>
+  </body>
+</html>
